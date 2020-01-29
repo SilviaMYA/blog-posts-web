@@ -9,12 +9,17 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
-                    You are logged in!
+                    <h2>My blog posts </h2>
+                    <ul>
+                        @foreach ($my_blog_posts as $post)
+                        <li><h4> {{ $post->title }}</h4></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
