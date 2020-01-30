@@ -9,6 +9,7 @@
             <div class="card">
 
                 <div class="card-body">
+                
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
@@ -28,7 +29,6 @@
                     <div class="text-center">
                         <h4> I don't have any post!</h4>
                         <input class="btn btn-success" type="submit" value="Create post" onClick="location.href = '{{ url('new_post') }}'">
-
                     </div>
                     @endif
                 </div>

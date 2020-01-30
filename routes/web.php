@@ -11,21 +11,37 @@
 |
 */
 
-/*
-* The login page is the home
+/**
+ * Redirect to Login if user no logged in
+ */
+Route::get('/', array('before' => 'auth', 'uses' => 'HomeController@index'));
+
+/**
+* Route to render login page
 */
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth/login');
 });
 
-/**View to show the new blog post form*/
+
+/**
+* Route to render home page
+*/
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+/**
+ * Route to show view to create the new blog post form
+*/
 Route::get('/new_post', function () {
     return view('blogPosts.createNewPost');
 });
 
-/**render to the BlogPostCOntroller and execute storePost function */
-Route::post('create_post','BlogPostController@storePost');
+
+/**
+ * render to the BlogPostCOntroller and execute storePost function
+*/
+Route::post('create_post', 'BlogPostController@storePost');
+
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
