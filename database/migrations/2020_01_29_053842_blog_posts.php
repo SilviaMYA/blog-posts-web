@@ -13,17 +13,18 @@ class BlogPosts extends Migration
      */
     public function up()
     {
-        //blog_posts table with an user_email Foreig Key field with onDelete  cascade
+        //blog_posts table with an user_id Foreig Key field with onDelete  cascade
         Schema::create('blog_posts', function (Blueprint $table) {
             $table->increments('post_id');
-            $table->string('user_email');
-            $table->foreign('user_email')
-                ->references('email')
-                ->on('users')
+            $table->unsignedInteger('user_id');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
+
             $table->string('title');
-            $table->string('content');
-            $table->date('created');
+            $table->longText('content');
+            $table->timestamps();
         });
     }
 
@@ -34,6 +35,6 @@ class BlogPosts extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('blog_posts');
     }
 }

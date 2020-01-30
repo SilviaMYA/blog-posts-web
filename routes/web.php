@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+/**View to show the new blog post form*/
+Route::get('/new_post', function () {
+    return view('blogPosts.createNewPost');
+});
+
+/**render to the BlogPostCOntroller and execute storePost function */
+Route::post('create_post','BlogPostController@storePost');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

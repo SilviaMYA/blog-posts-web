@@ -24,14 +24,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = auth()->user(); //get current user using Helper
+         //get current user using Helper
+        $current_user = auth()->user();
 
         //query to get the current user's blog_posts from the database and keep them in $posts
         $user_posts = DB::table('blog_posts')
-            ->where('user_email' , $user->email)
+            ->where('user_id' , $current_user->id)
             ->get();
-
-        //pass theese post to the home view
+            
+        //rendering theese posts to the home view
         return view('home', ['my_blog_posts' => $user_posts]);
     }
 }
