@@ -33,6 +33,6 @@ class HomeController extends Controller
             ->get();
             
         //rendering theese posts to the home view
-        return view('home', ['my_blog_posts' => $user_posts]);
+        return view('home', ['my_blog_posts' => $user_posts->reverse()->values()]);
     }
 }
