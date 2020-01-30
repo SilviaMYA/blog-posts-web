@@ -8,8 +8,7 @@
             <div class="card">
                 <div class="card-body ">
 
-
-                    <form method="post" action="create_post">
+                    <form method="post" action="create-post">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="name">Title</label>

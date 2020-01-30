@@ -33,15 +33,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 /**
  * Route to show view to create the new blog post form
 */
-Route::get('/new_post', function () {
+Route::get('/new-post', function () {
     return view('blogPosts.createNewPost');
 });
 
 
 /**
- * render to the BlogPostCOntroller and execute storePost function
+ * render to the BlogPostController and execute storePost function
 */
-Route::post('create_post', 'BlogPostController@storePost');
+Route::post('create-post', 'BlogPostController@storePost');
+
+
+/**
+ * render to the BlogPostController and execute deletePost function
+*/
+Route::get('delete-post/{post_id}', 'BlogPostController@deletePost');
 
 
 Auth::routes();
