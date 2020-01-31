@@ -10,6 +10,7 @@
                 <div class="text-center mt-3">
                     <a href="{{ url('new-post') }}" class="btn btn-success"> Add new </a>
                 </div>
+                <h4 class="text-center mt-4 text-info font-weight-bold">Average lenght of the blog posts: {{ $average_posts }}</h4>
                 <div class="card-body">
 
                     @if (session('status'))
@@ -21,7 +22,6 @@
                     @if (count($my_blog_posts) > 0)
                     <ul class="list-group">
                         @foreach ($my_blog_posts as $post)
-
                         <li class="list-group-item">
                             <h4> {{ $loop->iteration }}. {{ $post->title }}</h4>
                             <p class="font-italic"> {{ $post->content }} </p>
