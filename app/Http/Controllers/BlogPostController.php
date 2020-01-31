@@ -96,9 +96,12 @@ class BlogPostController extends Controller
         $totalPosts = count($arrayPosts);
         //total words is the lenght of the new array, it contains all of the posts
         $totalWord = count($newArray);
-        //get average
-        $average = $totalWord / $totalPosts; 
-        
+        //calculate average if we have posts
+        if ($totalPosts > 0) {
+            $average = $totalWord / $totalPosts;
+        }else{
+            $average = 0;
+        }
         return $average;
     }
 }
