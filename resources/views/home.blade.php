@@ -15,6 +15,8 @@
                     </div>
                     @endif
 
+                    <!-- if you already have posts created you will see a button to add new post  
+                        and the average lenght of your posts  -->
                     @if (count($my_blog_posts) > 0)
                     <div class="text-center mt-3">
                         <a href="{{ url('new-post') }}" class="btn btn-success"> Add new </a>
@@ -24,16 +26,20 @@
                     <ul class="list-group">
                         @foreach ($my_blog_posts as $post)
                         <li class="list-group-item">
+                            <!-- show post's title and content -->
                             <h4> {{ $loop->iteration }}. {{ $post->title }}</h4>
                             <p class="font-italic"> {{ $post->content }} </p>
+                            <!-- to show the date that the post was created  -->
                             <p class="font-weight-bold float-right"> Created at {{ date('d-M-y H:i', strtotime($post->created_at)) }} </p>
+                            <!-- each post has option to be deleted -->
                             <a href="{{ url('delete-post/' . $post->post_id ) }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger mt-3" role="button" title="Delete this post"> Delete </a>
                         </li>
                         @endforeach
                     </ul>
                     @else
+                    <!-- If you dont have any post created you'll have a button to create a post -->
                     <div class="text-center">
-                        <h4> I don't have any post!</h4>
+                        <h4> You don't have any posts!</h4>
                         <a href="{{ url('new-post') }}" class="btn btn-success"> Create post </a>
                     </div>
                     @endif

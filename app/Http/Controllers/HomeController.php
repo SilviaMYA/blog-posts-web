@@ -29,21 +29,21 @@ class HomeController extends Controller
         $current_user = auth()->user();
 
         //query to get the current user's blog_posts from the database and keep them in $user_posts
-        $user_posts = DB::table('blog_posts')
+        $userPosts = DB::table('blog_posts')
             ->where('user_id', $current_user->id)
             ->get();
 
 
-        //a blogPost object to get access to the average function in BlogPostController
+        //a blogPost object to get access to the averageLengthWords function in BlogPostController
         $blogPosts = new BlogPostController();
 
         //
-        $arrayWords = $this->storePostsToArrayWords($user_posts);
+        $arrayWords = $this->storePostsToArrayWords($userPosts);
 
         //rendering to the home view 
         return view(
             'home',
-            ['my_blog_posts' => $user_posts->reverse()->values()], //reverse() ---> to show newest to olderst posts
+            ['my_blog_posts' => $userPosts->reverse()->values()], //reverse() ---> to show newest to olderst posts
             ['average_posts' => $blogPosts->averageLengthWords($arrayWords)]  //get average lenght of the blog posts
         );
     }
@@ -51,7 +51,7 @@ class HomeController extends Controller
 
     /**
      * storePostsToArrayWords
-     * Push content's post into an array 
+     * Push post's content into an array 
      * @param  mixed $posts contain all of current user's posts
      *
      * @return void
@@ -61,7 +61,7 @@ class HomeController extends Controller
         $arrayWords = array();
 
         //for all of posts,
-        //push only the content field in the new arrayWords
+        //push only the content field in the new $arrayWords
         for ($i = 0; $i < count($posts); $i++) {
                 array_push($arrayWords, $posts[$i]->content);
         }

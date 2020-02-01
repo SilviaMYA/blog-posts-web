@@ -20,6 +20,7 @@ class BlogPostController extends Controller
     {
 
         // validate data from form
+        //in this point it is not necesary validate empty values due to input fields have attribute required
         $this->validate($request, [
             'title' => 'required|max:255',
             'content' => 'required'
@@ -41,14 +42,14 @@ class BlogPostController extends Controller
         //save post in the database
         $post->save();
 
-        return redirect('home');
+        //redirect to home page after create a post
+        return redirect('/');
     }
 
 
     /**
      * deletePost
-     * an user can delete their post in the database
-     * @param  mixed $request
+     * An user can delete their post in the database
      * @param  mixed $idPost is the post to delete
      *
      * @return void
@@ -59,12 +60,13 @@ class BlogPostController extends Controller
         //get current user using Helper
         $current_user = auth()->user();
 
-        //query to delete the post we have as parameter ands created by current_user 
+        //current user delete the post we have as parameter 
         DB::table('blog_posts')
             ->where('user_id', $current_user->id)
             ->where('post_id', $post_id)
             ->delete();
 
+        //redirect to home page after delete a post
         return redirect('/');
     }
 
@@ -87,10 +89,10 @@ class BlogPostController extends Controller
 
             $totalWords = 0;
 
-            //get the number of word for each post and store them in $totalWords
+            //get the number of words for each post and acumulate them in $totalWords to calculate the average
             for ($i = 0; $i < count($arrayPosts); $i++) {
                 $totalWords +=  str_word_count($arrayPosts[$i]);
-            }
+            }            
             $average = $totalWords / $totalPosts;
         } else {
             $average = 0;
