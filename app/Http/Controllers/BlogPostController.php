@@ -73,35 +73,29 @@ class BlogPostController extends Controller
     /**
      * averageLengthWords
      * Calculates the average lenght of the blog posts belong to the current user
-     * @param  mixed $request
-     * @param  mixed $arrayPosts contain all of current user's posts
+     * @param  mixed $arrayPosts is an array of words, contain all of current user's posts
      *
-     * @return void
+     * @return $average average lenght words
      */
     public static function averageLengthWords($arrayPosts)
     {
-        $newArray = array();
 
-        //for all of posts,
-        //each post is explode without blank spaces, to get words
-        //and pushed to a new array
-        for ($i = 0; $i < count($arrayPosts); $i++) {
-            $parts = explode(' ', $arrayPosts[$i]->content);
-            for ($j = 0; $j < count($parts); $j++) {
-                array_push($newArray, $parts[$j]);
-            }
-        }
-
-        //total number of posts is the lenght of the array we have as parameter
+        //totalPost is the lenght of the arrayPost
         $totalPosts = count($arrayPosts);
-        //total words is the lenght of the new array, it contains all of the posts
-        $totalWord = count($newArray);
         //calculate average if we have posts
         if ($totalPosts > 0) {
-            $average = $totalWord / $totalPosts;
-        }else{
+
+            $totalWords = 0;
+
+            //get the number of word for each post and store them in $totalWords
+            for ($i = 0; $i < count($arrayPosts); $i++) {
+                $totalWords +=  str_word_count($arrayPosts[$i]);
+            }
+            $average = $totalWords / $totalPosts;
+        } else {
             $average = 0;
         }
+
         return $average;
     }
 }
