@@ -11,7 +11,7 @@ use App\Http\Controllers\HomeController;
 class BlogPostsTest extends TestCase
 {
     /**
-     * A basic unit test example.
+     * Tests for average calculation function.
      *
      * @return void
      */

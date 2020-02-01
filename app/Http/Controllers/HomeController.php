@@ -44,7 +44,7 @@ class HomeController extends Controller
         return view(
             'home',
             ['my_blog_posts' => $userPosts->reverse()->values()], //reverse() ---> to show newest to olderst posts
-            ['average_posts' => $blogPosts->averageLengthWords($arrayWords)]  //get average lenght of the blog posts
+            ['average_posts' => $blogPosts->averageLengthWords($arrayWords)]  //get average length of the blog posts
         );
     }
 

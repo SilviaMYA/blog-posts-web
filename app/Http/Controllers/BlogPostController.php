@@ -74,15 +74,15 @@ class BlogPostController extends Controller
 
     /**
      * averageLengthWords
-     * Calculates the average lenght of the blog posts belong to the current user
+     * Calculates the average length of the blog posts belong to the current user
      * @param  mixed $arrayPosts is an array of words, contain all of current user's posts
      *
-     * @return $average average lenght words
+     * @return $average average length words
      */
     public static function averageLengthWords($arrayPosts)
     {
 
-        //totalPost is the lenght of the arrayPost
+        //totalPost is the length of the arrayPost
         $totalPosts = count($arrayPosts);
         //calculate average if we have posts
         if ($totalPosts > 0) {
